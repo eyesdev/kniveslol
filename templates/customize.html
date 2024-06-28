@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>customize</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+
+    <script src="https://kit.fontawesome.com/b801578fa3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        html {
+            font-family: 'Kanit', sans-serif;
+            background-color: black;
+            color: white;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer .fa-solid,
+        footer .fa-brands {
+            background-color: #0a0a0a;
+            border: none;
+            color: #333c5c;
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        footer .fa-solid:hover,
+        footer .fa-brands:hover {
+            transform: scale(1.1);
+        }
+
+        .welcomebox {
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            gap: 10px;
+            opacity: 0;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+
+        }
+
+        .linktouser {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            margin-top: -10px;
+        }
+
+        .welcomebox img {
+            width: 90px;
+            height: 90px;
+            margin: 10px;
+            margin-top: 30px;
+            border-radius: 100%;
+        }
+
+        .welcome {
+            display: flex;
+            flex-direction: column;
+            margin-top: -10px;
+        }
+
+        .welcomebox.animate__animated.animate__fadeIn,
+        footer.animate__animated.animate__fadeIn {
+            opacity: 1;
+        }
+
+        .container {
+            display: flex;
+            margin-left: 35%;
+            margin-top: 15%;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input {
+            display: flex;
+            padding: 10px;
+            background-color: #0a0a0a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        span {
+            display: flex;
+            padding: 10px;
+            background-color: #0a0a0a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 170px;
+            height: 20px;
+        }
+
+        .save-button button {
+            color: white;
+            background-color: #0a0a0a;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .save-button button:hover {
+            transform: scale(1.1);
+
+        }
+
+        h3 {
+            color: #333c5c;
+        }
+
+        .pfp .fa-solid,
+        .bio .fa-solid,
+        .background .fa-regular,
+        .music .fa-solid{
+            color: white;
+            margin: 10px;
+        }
+
+        .fa-solid,
+        .fa-gem {
+            color: white;
+        }
+
+        .premium-bar h3 {
+            display: flex;
+            gap: 10px;
+        }
+
+        .premium-bar i {
+            margin-top: 8px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/customize" method="POST">
+        <div class="welcomebox animate__animated animate__fadeIn">
+            <img src="https://th.bing.com/th/id/R.b199903bc0153905f9685d64351f7b29?rik=Je1A6Zf1DuB%2fQQ&riu=http%3a%2f%2ficons.iconarchive.com%2ficons%2fgoogle%2fnoto-emoji-food-drink%2f512%2f32449-kitchen-knife-icon.png&ehk=t04wcJBNMlNV0KNYZFEYLv15DG0oXprRoqKCY%2fvbKnI%3d&risl=&pid=ImgRaw&r=0"
+                alt="None">
+            <div class="welcome">
+                {% if premium == "True" %}
+                <div class="premium-bar">
+                </div>
+                {% endif %}
+                {% if premium == "False" %}
+                <h3>@{{ username }}</h3>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="container animate__animated animate__fadeIn">
+
+
+            <div class="row">
+                <div class="pfp">
+                    <div>
+                        <h3><i class="fa-solid fa-user-pen"></i>profile picture</h3>
+                    </div>
+                    <input type="text" id="pfp" name="pfp" value="{{ pfp }}">
+                </div>
+
+
+                <div class="bio">
+                    <div>
+                        <h3><i class="fa-solid fa-a"></i>description</h3>
+                    </div>
+                    <input type="text" id="bio" name="bio" value="{{ bio }}">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="background">
+                    <div>
+                        <h3><i class="fa-regular fa-image"></i>background</h3>
+                    </div>
+                    <input type="text" id="background" name="background" value="{{ background }}">
+                </div>
+
+                <div class="music">
+                    <div>
+                        <h3><i class="fa-solid fa-music"></i>audio</h3>
+                    </div>
+                    <input type="text" id="music" name="music" value="{{ music }}">
+                </div>
+            </div>
+
+
+
+
+            <div class="save-button">
+                <button type="submit">save</button>
+            </div>
+
+
+        </div>
+
+        <footer class="animate__animated animate__fadeIn">
+            <a href="/account"><i class="fa-solid fa-gear"></i></a>
+            <a href="/customize"><i class="fa-solid fa-palette"></i></a>
+            <a href="/links"><i class="fa-solid fa-link"></i></a>
+            <a href="/{{ username }}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="discord.gg/cartibio"><i class="fa-brands fa-discord"></i></a>
+        </footer>
+
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                document.querySelector('.welcomebox').classList.add('animate__fadeIn');
+                document.querySelector('footer').classList.add('animate__fadeIn');
+            }, 500);
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }}</title>
+    <script src="https://kit.fontawesome.com/6d52fa97e4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            width: 400px; /* Increased container width */
+            height: 250px; /* Increased container height */
+            position: relative;
+            z-index: 1;
+        }
+
+        .socials {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: center;
+        }   
+
+        .socials a {
+            color: white;
+            font-size: 24px; /* Adjusted social icon size */
+        }   
+
+        #clickanywhere {
+            background-color: #080808;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0.95;
+            color: white;
+            font-family: 'Lato', sans-serif;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .one {
+            font-size: 28px; /* Adjusted heading font size */
+        }
+
+        .description {
+            font-size: 18px; /* Adjusted description font size */
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="video-background">
+        <source src="{{ background }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <audio id="audio" src="{{ music }}" loop></audio>
+    <div class="container">
+        <h1 class="one">{{ username }}</h1>
+        <i class="fas fa-user"></i> <!-- Updated font awesome class -->
+        <p class="description">{{ bio }}</p>
+
+        <div class="socials">
+            {% if github %}
+            <a href="https://github.com/{{ github }}" target="_blank"><i class="fab fa-github hover-text" data-hover-text='github'></i></a>
+            {% endif %}
+            {% if steam %}
+            <a href="https://steamcommunity.com/id/{{ steam }}" target="_blank"><i class="fab fa-steam hover-text" data-hover-text='steam'></i></a>
+            {% endif %}
+            {% if spotify %}
+            <a href="https://open.spotify.com/user/{{ spotify }}" target="_blank"><i class="fab fa-spotify hover-text" data-hover-text='spotify'></i></a>
+            {% endif %}
+            {% if revolut %}
+            <a href="https://revolut.me/{{ revolut }}" target="_blank"><i class="fas fa-r" data-hover-text='revolut'></i></a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="clickanywhere">
+        <p>Click to enter</p>
+    </div>
+
+    <script>
+        document.addEventListener("click", function () {
+            var clickAnywhereElement = document.getElementById("clickanywhere");
+            clickAnywhereElement.style.opacity = "0";
+            setTimeout(function () {
+                clickAnywhereElement.style.display = "none";
+            }, 500);
+            document.getElementById("audio").play();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/b801578fa3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+
+    <title>Register</title>
+</head>
+
+<style>
+    html {
+        font-family: 'Kanit', sans-serif;
+        background-color: black;
+        color: white;
+    }
+
+    .register {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+    }
+
+    .register h1 span {
+        color: #333c5c;
+    }
+
+    .register .columns {
+        display: flex;
+        gap: 20px;
+    }
+
+    .register .column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .register label {
+        margin-right: 10px;
+    }
+
+    .register input[type="text"],
+    input[type="password"] {
+        width: 300px;
+        padding: 5px;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: #333c5c;
+        background-color: black;
+        color: white;
+    }
+
+    .save-button button {
+        display: flex;
+        background-color: black;
+        color: white;
+        border-style: solid;
+        border-color: #333c5c;
+        border-radius: 5px;
+        padding: 5px;
+        margin-top: 20px;
+    }
+
+    .fa-solid {
+        margin-right: 5px;
+    }
+
+    .login-link a {
+        display: flex;
+        text-decoration: none;
+        color: white;
+        font-size: small;
+    }
+</style>
+
+<body>
+    <script>
+        // Array to store valid invite codes
+        var validInviteCodes = [
+  'knives_J4wJ95h',
+  'knives_8Kh2p4d',
+  'knives_A3fYh2T',
+  'knives_P9gRz6L',
+  'knives_E6iMv5K',
+  'knives_B2nFq8j',
+  'knives_L5kPt4N',
+  'knives_C7aVg3Z',
+  'knives_O1rHl6s',
+  'knives_G9mWu2P',
+  'knives_D4jSv7x',
+  'knives_N8pXz3J',
+  'knives_F1cDy2R',
+  'knives_I5wUo6n',
+  'knives_K7eGv3A',
+  'knives_M3tLx5q',
+  'knives_H4bTf7k',
+  'knives_Q6eZj8r',
+  'knives_R9zUq4l',
+  'knives_S2xYc6h',
+  'knives_T5vBp9s',
+  'knives_U8nKg2m',
+  'knives_V1dHr3y',
+  'knives_W4pJk8t',
+  'knives_X7mFv5z',
+  'knives_Y2cLq3b',
+  'knives_Z5wTn6x',
+  'knives_a2pHq4j',
+  'knives_b5mDv7x',
+  'knives_c8nRz2l',
+  'knives_d1kXc6h',
+  'knives_e4jSv9r',
+  'knives_f7gPz5k',
+  'knives_g2uYh3s',
+  'knives_h5rJt6n',
+  'knives_i8eGv3a',
+  'knives_j1cDy6r',
+  'knives_k4vBp9s',
+  'knives_l7nKg2m',
+  'knives_m2dHr5y',
+  'knives_n5pJk8t',
+  'knives_o8mFv2z',
+  'knives_p1cLq3b',
+  'knives_q4wTn6x',
+  'knives_r7zUq9l',
+  'knives_s2xYc6h',
+  'knives_t5vBp9s',
+  'knives_u8nKg2m',
+  'knives_v1dHr5y',
+  'knives_w4pJk8t',
+  'knives_x7mFv2z',
+  'knives_y2cLq3b',
+  'knives_z5wTn6x'
+];
+
+
+        // Function to generate a random verification code
+        function generateVerificationCode() {
+            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var code = "";
+            for (var i = 0; i < 5; i++) {
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return code;
+        }
+
+        // Function to validate the invite code and verification code
+        function validateForm() {
+            var inviteCode = document.getElementById("inviteCode").value;
+            var verificationCode = document.getElementById("verificationCode").value;
+
+            if (validInviteCodes.includes(inviteCode) && verificationCode === sessionStorage.getItem("verificationCode")) {
+                return true;
+            } else {
+                alert("Verification or invite code invalid.");
+                return false;
+            }
+        }
+
+        // Function to handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            if (validateForm()) {
+                // Perform registration logic here
+                alert("Registration successful!");
+            }
+        }
+
+        // Function to handle verification code generation and display
+        function handleGenerateCode() {
+            var verificationCode = generateVerificationCode();
+            sessionStorage.setItem("verificationCode", verificationCode);
+            alert("Verification code: " + verificationCode);
+        }
+    </script>
+
+    <div class="register">
+        <h1><span>knives</span>.lol register</h1>
+        <form action="/register" method="POST" onsubmit="handleSubmit(event);">
+            <div class="columns">
+                <div class="column">
+
+                    <label for="username"><i class="fa-solid fa-user"></i>Username</label>
+                    <input type="text" id="username" name="username">
+
+                    <label for="email"><i class="fa-solid fa-email"></i>Email</label>
+                    <input type="text" id="email" name="email">
+
+                    <label for="password"><i class="fa-solid fa-lock"></i>Password</label>
+                    <input type="password" id="password" name="password">
+
+                    <label for="inviteCode"><i class="fa-solid fa-key"></i>Invite Code</label>
+                    <input type="text" id="inviteCode" name="inviteCode">
+
+                    <label for="verificationCode"><i class="fa-solid fa-key"></i>Verification Code</label>
+                    <input type="text" id="verificationCode" name="verificationCode">
+
+                    <div class="login-link">
+                        <a href="/login">or login here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="save-button">
+                <button type="button" onclick="handleGenerateCode()">Generate Verification Code</button>
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
